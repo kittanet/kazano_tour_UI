@@ -1,22 +1,3 @@
-const calculateDays = (dateRange: string): string => {
-  const [start, end] = dateRange.split(" - ");
-  const year = end.split(", ")[1]; // Extract the year from the end date
-
-  const startDate = new Date(`${start}, ${year}`);
-  const endDate = new Date(`${end}`);
-
-  const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-
-  // If the start and end dates are the same, return only the start date
-  if (diffDays === 0) {
-    return `${start}, ${year}`;
-  }
-
-  // Otherwise, return the full date range with the number of days
-  return `${dateRange} (${diffDays + 1} days)`;
-};
-
 const tourTrips = [
   {
     id: 1,
@@ -26,7 +7,8 @@ const tourTrips = [
     price: 1299.99,
     code: "ALP-001",
     country: "Europe",
-    dateRange: calculateDays("July 1 - July 10, 2025"),
+    dateRange: "3 วัน 2 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 2,
@@ -36,7 +18,8 @@ const tourTrips = [
     price: 2499.99,
     code: "SAF-002",
     country: "Africa",
-    dateRange: calculateDays("August 15 - August 15, 2025"), // Same day
+    dateRange: "5 วัน 4 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 3,
@@ -46,7 +29,8 @@ const tourTrips = [
     price: 1999.99,
     code: "JPN-003",
     country: "Asia",
-    dateRange: calculateDays("September 5 - September 15, 2025"),
+    dateRange: "7 วัน 6 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 4,
@@ -56,7 +40,8 @@ const tourTrips = [
     price: 1599.99,
     code: "CRU-004",
     country: "Caribbean",
-    dateRange: calculateDays("October 10 - October 20, 2025"),
+    dateRange: "4 วัน 3 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 5,
@@ -66,7 +51,8 @@ const tourTrips = [
     price: 1799.99,
     code: "NLT-005",
     country: "Europe",
-    dateRange: calculateDays("November 1 - November 7, 2025"),
+    dateRange: "7 วัน 6 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 6,
@@ -76,7 +62,8 @@ const tourTrips = [
     price: 2299.99,
     code: "GBR-006",
     country: "Australia",
-    dateRange: calculateDays("December 1 - December 10, 2025"),
+    dateRange: "10 วัน 9 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 7,
@@ -86,7 +73,8 @@ const tourTrips = [
     price: 999.99,
     code: "GCN-007",
     country: "North America",
-    dateRange: calculateDays("September 20 - September 25, 2025"),
+    dateRange: "5 วัน 4 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 8,
@@ -96,7 +84,8 @@ const tourTrips = [
     price: 1899.99,
     code: "MPE-008",
     country: "South America",
-    dateRange: calculateDays("October 5 - October 15, 2025"),
+    dateRange: "6 วัน 5 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
   {
     id: 9,
@@ -106,7 +95,8 @@ const tourTrips = [
     price: 4999.99,
     code: "ANT-009",
     country: "Antarctica",
-    dateRange: calculateDays("December 15 - December 25, 2025"),
+    dateRange: "12 วัน 11 คืน",
+    range: "พฤศจิกายน 63 - มกราคม 64",
   },
 ];
 
