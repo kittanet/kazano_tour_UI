@@ -7,7 +7,7 @@ import FAQ from "@/components/FAQ";
 
 const ProductPage: React.FC = () => (
   <DefaultLayout>
-    <div className="max-w-5xl mx-auto pb-8 px-4">
+    <div className="mx-auto pb-8 px-4">
       <div className="relative w-full h-auto mb-6">
         <img
           src="https://i.ibb.co/27HMWHkG/istockphoto-1401102782-612x612-1-1.jpg"

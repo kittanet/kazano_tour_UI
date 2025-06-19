@@ -4,7 +4,7 @@ import DefaultLayout from "@/layouts/default";
 const ContactPage: React.FC = () => {
   return (
     <DefaultLayout>
-      <div className="max-w-4xl mx-auto py-8 px-4">
+      <div className="mx-auto py-8 px-4">
         <h1 className="text-3xl font-bold mb-6">Contact Us</h1>
         <form className="space-y-4">
           <div>

@@ -78,7 +78,6 @@ export const Navbar = () => {
       >
         <NavbarItem>
           <Link
-            isExternal
             href="/contact"
             className="flex items-center gap-2 text-white hover:text-yellow-300"
           >
