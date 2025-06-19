@@ -5,18 +5,36 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@heroui/navbar";
 import { link as linkStyles } from "@heroui/theme";
 import clsx from "clsx";
 
-import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { navbarItem } from "@/constants/navbar";
 import { PhoneIcon } from "@heroicons/react/24/outline";
+import { useCallback } from "react";
+import { Popover } from "./Popover";
+import { PopoverContent } from "./PopoverContent";
 
 export const Navbar = () => {
+  const renderLink = useCallback((label: string, href?: string) => {
+    return (
+      <Link
+        className={clsx(
+          linkStyles({ color: "foreground" }),
+          "text-white hover:text-yellow-300 font-medium"
+        )}
+        href={href}
+      >
+        {label}
+      </Link>
+    );
+  }, []);
+
   return (
     <HeroUINavbar
       maxWidth="xl"
@@ -39,23 +57,16 @@ export const Navbar = () => {
 
       {/* Navigation Links */}
       <NavbarContent className="hidden lg:flex gap-4 justify-start ml-2">
-        {[
-          { label: "หน้าหลัก", href: "/" },
-          { label: "แพ็คเกจทัวร์ทั้งหมด", href: "/tours" },
-          { label: "บล็อกท่องเที่ยว", href: "/blogs" },
-          { label: "ติดต่อเรา", href: "/about" },
-          { label: "แชทกับคาซ่า", href: "/chat" },
-        ].map((item) => (
-          <NavbarItem key={item.href}>
-            <Link
-              className={clsx(
-                linkStyles({ color: "foreground" }),
-                "text-white hover:text-yellow-300 font-medium"
-              )}
-              href={item.href}
-            >
-              {item.label}
-            </Link>
+        {navbarItem.map((item, index) => (
+          <NavbarItem key={index}>
+            {item.isNotLink ? (
+              <Popover
+                title={renderLink(item.label)}
+                content={<PopoverContent />}
+              />
+            ) : (
+              renderLink(item.label, item.href)
+            )}
           </NavbarItem>
         ))}
       </NavbarContent>
@@ -65,6 +76,16 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
+        <NavbarItem>
+          <Link
+            isExternal
+            href="/contact"
+            className="flex items-center gap-2 text-white hover:text-yellow-300"
+          >
+            <PhoneIcon className="w-5 h-5" />
+            Contact Us
+          </Link>
+        </NavbarItem>
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
@@ -88,11 +109,11 @@ export const Navbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {[
-            { label: "หน้าหลัก", href: "/" },
-            { label: "แพ็คเกจทัวร์ทั้งหมด", href: "/tours" },
-            { label: "บล็อกท่องเที่ยว", href: "/blogs" },
-            { label: "ติดต่อเรา", href: "/about" },
-            { label: "แชทกับคาซ่า", href: "/chat" },
+            { label: "Home", href: "/" },
+            { label: "Destinations", href: "/destinations" },
+            { label: "Tours", href: "/tours" },
+            { label: "About Us", href: "/about" },
+            { label: "Contact", href: "/contact" },
           ].map((item, index) => (
             <NavbarMenuItem key={`${item.label}-${index}`}>
               <Link
