@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import DefaultLayout from "@/layouts/default";
 import axios from "axios";
+import { Spinner } from "@heroui/react";
 
 const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
     []
   );
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
-    if (input.trim() === "") return;
+    if (input.trim() === "" || loading) return;
 
     // Add user message
     setMessages((prev) => [...prev, { sender: "User", text: input }]);
 
     setInput("");
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -41,6 +44,8 @@ const ChatPage: React.FC = () => {
         ...prev,
         { sender: "Chatbot", text: "Error: Unable to connect to the server." },
       ]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,7 +53,7 @@ const ChatPage: React.FC = () => {
     <DefaultLayout>
       <div className="max-w-3xl mx-auto py-8 px-4">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Chat</h1>
+          <h1 className="text-2xl font-bold">แชทกับคาซ่า</h1>
           <button
             className="text-red-500 border border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             onClick={() => setMessages([])}
@@ -62,7 +67,7 @@ const ChatPage: React.FC = () => {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`mb-2 ${
+                className={`mb-4 ${
                   message.sender === "User" ? "text-right" : "text-left"
                 }`}
               >
@@ -77,6 +82,13 @@ const ChatPage: React.FC = () => {
                 </span>
               </div>
             ))}
+            {loading && (
+              <div className="mb-4 text-left">
+                <span className="inline-flex px-4 py-2 rounded-lg bg-gray-200 text-black">
+                  <Spinner variant="dots" />
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Input Box */}

@@ -40,8 +40,8 @@ const ProductPage: React.FC = () => (
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {tourTrips.map((trip) => (
-          <TourCard key={trip.id} tour={trip} />
+        {tourTrips.map((tour) => (
+          <TourCard key={tour.id} tour={tour} />
         ))}
       </div>
 

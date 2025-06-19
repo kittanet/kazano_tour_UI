@@ -43,8 +43,8 @@ export const Navbar = () => {
           { label: "หน้าหลัก", href: "/" },
           { label: "แพ็คเกจทัวร์ทั้งหมด", href: "/tours" },
           { label: "บล็อกท่องเที่ยว", href: "/blogs" },
-          { label: "About Us", href: "/about" },
-          { label: "Chat", href: "/chat" },
+          { label: "ติดต่อเรา", href: "/about" },
+          { label: "แชทกับคาซ่า", href: "/chat" },
         ].map((item) => (
           <NavbarItem key={item.href}>
             <Link
@@ -65,16 +65,6 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem>
-          <Link
-            isExternal
-            href="/contact"
-            className="flex items-center gap-2 text-white hover:text-yellow-300"
-          >
-            <PhoneIcon className="w-5 h-5" />
-            Contact Us
-          </Link>
-        </NavbarItem>
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
@@ -98,11 +88,11 @@ export const Navbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {[
-            { label: "Home", href: "/" },
-            { label: "Destinations", href: "/destinations" },
-            { label: "Tours", href: "/tours" },
-            { label: "About Us", href: "/about" },
-            { label: "Contact", href: "/contact" },
+            { label: "หน้าหลัก", href: "/" },
+            { label: "แพ็คเกจทัวร์ทั้งหมด", href: "/tours" },
+            { label: "บล็อกท่องเที่ยว", href: "/blogs" },
+            { label: "ติดต่อเรา", href: "/about" },
+            { label: "แชทกับคาซ่า", href: "/chat" },
           ].map((item, index) => (
             <NavbarMenuItem key={`${item.label}-${index}`}>
               <Link
