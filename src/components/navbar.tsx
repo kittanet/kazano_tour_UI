@@ -91,8 +91,6 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem>
           <Button
-            as={Link}
-            href="/book-now"
             className="bg-yellow-400 text-blue-900 font-bold hover:bg-yellow-500"
             variant="flat"
           >

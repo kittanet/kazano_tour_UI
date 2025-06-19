@@ -10,6 +10,7 @@ type Tour = {
   country: string; // Country
   dateRange: string; // Date range
   range: string; // Available range
+  link: string; // Link to PDF or more info
 };
 
 interface Props {
@@ -37,28 +38,28 @@ const TourCard: React.FC<Props> = ({ tour }) => (
       {/* Name */}
       <h2 className="text-lg font-bold">{tour.name}</h2>
 
-      {/* Tour Code */}
+      {/* Range */}
       <div className="flex font-semibold text-gray-500 text-sm mt-1 items-center">
         <CalendarIcon className="mr-1" />
         <span className="1">{tour.range}</span>
       </div>
 
-      {/* Tour Code */}
-      <p className="font-semibold text-gray-500 text-sm mt-1">
-        Code: {tour.code}
-      </p>
-
       {/* Price */}
       <div className="mt-2 text-red-500 font-semibold text-lg text-right">
-        ฿ {tour.price.toLocaleString("en-US", { maximumFractionDigits: 0 })}
+        {tour.price.toLocaleString("en-US", { maximumFractionDigits: 0 })}
       </div>
 
       {/* Buttons */}
       <div className="flex justify-between mt-4">
-        <button className="flex items-center bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">
+        <a
+          href={tour.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300"
+        >
           <FileIcon className="mr-2" />
           <span className="font-medium">PDF</span>
-        </button>
+        </a>
         <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 font-medium">
           ข้อมูลเพิ่มเติม
         </button>
