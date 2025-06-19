@@ -40,9 +40,9 @@ export const Navbar = () => {
       {/* Navigation Links */}
       <NavbarContent className="hidden lg:flex gap-4 justify-start ml-2">
         {[
-          { label: "Home", href: "/" },
-          { label: "Destinations", href: "/destinations" },
-          { label: "Tours", href: "/tours" },
+          { label: "หน้าหลัก", href: "/" },
+          { label: "แพ็คเกจทัวร์ทั้งหมด", href: "/tours" },
+          { label: "บล็อกท่องเที่ยว", href: "/blogs" },
           { label: "About Us", href: "/about" },
           { label: "Chat", href: "/chat" },
         ].map((item) => (
