@@ -62,7 +62,7 @@ const ChatPage: React.FC = () => {
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              // onKeyDown={(e) => e.key === "Enter" && handleSend()}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
             />
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
