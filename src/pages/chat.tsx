@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DefaultLayout from "@/layouts/default";
+import axios from "axios";
 
 const ChatPage: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
@@ -7,30 +8,54 @@ const ChatPage: React.FC = () => {
   );
   const [input, setInput] = useState("");
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (input.trim() === "") return;
 
     // Add user message
     setMessages((prev) => [...prev, { sender: "User", text: input }]);
 
-    // Simulate chatbot response
-    setTimeout(() => {
+    setInput("");
+
+    try {
+      const response = await axios.post(
+        "https://kazanotourapi-production.up.railway.app/ask-ai/",
+        {
+          userMessage: input,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       setMessages((prev) => [
         ...prev,
         {
           sender: "Chatbot",
-          text: "Thank you for your message! How can I assist you?",
+          text: response.data || "No response received.",
         },
       ]);
-    }, 1000);
-
-    setInput("");
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "Chatbot", text: "Error: Unable to connect to the server." },
+      ]);
+    }
   };
 
   return (
     <DefaultLayout>
       <div className="max-w-3xl mx-auto py-8 px-4">
-        <h1 className="text-2xl font-bold mb-6">Chat</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Chat</h1>
+          <button
+            className="text-red-500 border border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+            onClick={() => setMessages([])}
+          >
+            Clear
+          </button>
+        </div>
         <div className="border rounded-lg shadow p-4 bg-white">
           {/* Chat Messages */}
           <div className="h-96 overflow-y-auto mb-4">
