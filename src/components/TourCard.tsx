@@ -1,17 +1,6 @@
 import React from "react";
 import { CalendarIcon, FileIcon } from "./icons";
-
-type Tour = {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-  code: string; // Tour code
-  country: string; // Country
-  dateRange: string; // Date range
-  range: string; // Available range
-  link: string; // Link to PDF or more info
-};
+import { Tour } from "@/types/tour";
 
 interface Props {
   tour: Tour;
